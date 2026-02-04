@@ -7,7 +7,7 @@ jobs_sectors = [
     {'Company': 'Le Mont des Petits', 'Sector': 'Daycare', 'Year': '2021', 'Skills': 'Caregiving, Communication'}, 
     {'Company': 'Groupe Villeneuve Electrique', 'Sector': 'Construction - Electrical', 'Year': '2020', 'Skills': 'Problem Solving, Logical Thinking, Hardship Management, Precision, Teamwork'}, 
     {'Company': 'Novo Inc', 'Sector': 'Food Production', 'Year': '', 'Skills': 'Speed, Cleanliness'}, 
-    {'Company': 'Top Tech Solutions Inc', 'Sector': 'Tech', 'Year': '2018', 'Skills': 'Logical Thinking, Problem Solving, Teamwork, Precision, Organization, Communication'}, 
+    {'Company': 'Top Tech Solutions Inc', 'Sector': 'Tech - Networking', 'Year': '2018', 'Skills': 'Logical Thinking, Problem Solving, Teamwork, Precision, Organization, Communication'},
     {'Company': 'Ondel Inc', 'Sector': 'Construction - Electrical', 'Year': '2015', 'Skills': 'Problem Solving, Logical Thinking, Hardship Management, Precision, Teamwork'},
     {'Company': 'Subway', 'Sector': 'Food and Beverage', 'Year': '2014', 'Skills': 'Customer Service, Cleanliness, Communication'},
     {'Company': 'Silex Element', 'Sector': 'Manufacturing', 'Year': '2013', 'Skills': 'Organization'},
@@ -23,7 +23,7 @@ df = pd.DataFrame(jobs_sectors)
 skills_cols = [col for col in df.columns if col.startswith('Skill')]
 skills_data = []
 
-for _, row in df.iterrows():
+for index, row in df.iterrows():
     sector = row['Sector']
     skills = str(row['Skills']).split(',')
     for skill in skills:
