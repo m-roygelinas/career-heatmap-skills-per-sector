@@ -3,7 +3,7 @@ import seaborn as sns
 import pandas as pd
 import numpy as np
 
-jobs_sectors = [
+sectors = [
     {'Company' : 'Avivia', 'Sector': 'Manufacturing', 'Year': '2024', 'Skills': 'Speed, Precision, Problem Solving'}, 
     {'Company': 'Le Mont des Petits', 'Sector': 'Daycare', 'Year': '2021', 'Skills': 'Caregiving, Communication'}, 
     {'Company': 'Groupe Villeneuve Electrique', 'Sector': 'Construction - Electrical', 'Year': '2020', 'Skills': 'Problem Solving, Logical Thinking, Hardship Management, Precision, Teamwork'}, 
@@ -18,12 +18,10 @@ jobs_sectors = [
     {'Company': 'Service Alimentaire Direct', 'Sector': 'Food Production', 'Year': '2006', 'Skills': 'Customer Service, Precision, Communication'},
     {'School': 'CFP LeChantier', 'Sector': 'Student', 'Year': '2015', 'Skills': 'Organization, Problem Solving, Logical Thinking, Precision, Teamwork'},
     {'School': 'UQAM', 'Sector': 'Student', 'Year': '2016', 'Skills': 'Organization, Problem Solving, Logical Thinking, Communication, Teamwork'}]
-## let's create a skills per sector heatmap
 
-df = pd.DataFrame(jobs_sectors)
+df = pd.DataFrame(sectors)
 
 # Pivot: count how many times each skill appears per sector
-skills_cols = [col for col in df.columns if col.startswith('Skill')]
 skills_data = []
 
 for index, row in df.iterrows():
@@ -41,6 +39,7 @@ skills_matrix = pd.crosstab(skills_df['Sector'], skills_df['Skill'])
 # Add summary row
 skills_matrix.loc['Total'] = skills_matrix.sum(axis=0)
 
+# Mask zeros for better visualization
 skills_matrix_masked = skills_matrix.replace(0, np.nan)
 mask = skills_matrix_masked.isna()
 
